@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 
+import IconButton from './components/UI/IconButton'
 import { GlobalStyles } from './constants/styles'
 import AllExpenses from './screens/AllExpenses'
 import ManageExpense from './screens/ManageExpense'
@@ -14,12 +15,14 @@ const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
-  return <BottomTabs.Navigator screenOptions={{
-    headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-    headerTintColor: 'white',
-    tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-    tabBarActiveTintColor: GlobalStyles.colors.accent500
-  }}>
+  return <BottomTabs.Navigator
+    screenOptions={{
+      headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      headerTintColor: 'white',
+      tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      tabBarActiveTintColor: GlobalStyles.colors.accent500,
+      headerRight: ({ tintColor }) => <IconButton icon="add" size={24} color={tintColor} onPress={() => {}} />
+    }}>
     <BottomTabs.Screen
       name='RecentExpenses'
       component={RecentExpenses}
