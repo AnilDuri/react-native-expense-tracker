@@ -1,6 +1,7 @@
 import React, { useContext, useLayoutEffect } from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
+import ExpenseForm from '../components/ManageExpense/ExpenseForm'
 import Button from '../components/UI/Button'
 import IconButton from '../components/UI/IconButton'
 import { GlobalStyles } from '../constants/styles'
@@ -35,16 +36,16 @@ const ManageExpense = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      
-      <View style={styles.buttons}>
-        <Button mode="flat" onPress={cancelHandler} style={styles.button}>Cancel</Button>
-        <Button onPress={confirmHandler} style={styles.button}>{isEditing ? 'Update' : 'Add'}</Button>
-      </View>
-      {isEditing && (
-        <View style={styles.deleteContainer}>
-          <IconButton icon="trash" color={GlobalStyles.colors.error500} size={36} onPress={deleteExpenseHandler} />
+      <ExpenseForm/>
+        <View style={styles.buttons}>
+          <Button mode="flat" onPress={cancelHandler} style={styles.button}>Cancel</Button>
+          <Button onPress={confirmHandler} style={styles.button}>{isEditing ? 'Update' : 'Add'}</Button>
         </View>
-      )}
+        {isEditing && (
+          <View style={styles.deleteContainer}>
+            <IconButton icon="trash" color={GlobalStyles.colors.error500} size={36} onPress={deleteExpenseHandler} />
+          </View>
+        )}
     </View>
   )
 }
